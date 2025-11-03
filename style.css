@@ -34,13 +34,13 @@ html {
     padding: 3rem;
 }
 
-.inputAdd {
+.inputAdd, .inputSearch, .task {
    padding: 0.5rem;
    border-radius: 2px; 
    border: 1px solid gray;
 }
 
-.butonAdd {
+.butonAdd, .butonSearch  {
     padding: 0.5rem;
     border-radius: 2px; 
     border: none;
@@ -52,6 +52,20 @@ html {
     padding: 3rem;  
 }
 
+.formSearch {
+    display: flex;
+    gap: 1rem;
+}
 
+.listTask {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-size: 1.3rem;
+}
 
-
+.completed {
+    text-decoration: line-through;
+}
