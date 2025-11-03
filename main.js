@@ -16,11 +16,13 @@ function renderTask(tasks) { console.log ('estoy entrando a render task y recibo
   }
 }
 
-fetch(SERVER_URL).then ((response) => response.json () ).then ((data) => 
-    (tasks= data.results),
-renderTask(tasks)
-);
+fetch(SERVER_URL)
+  .then (  (response) => response.json ()  )
+  .then (  (data) => {
+    tasks = data.results;
+    renderTask(tasks);
+  });
 
 
-//Mirar por qué no llegan las tareas
+
 
