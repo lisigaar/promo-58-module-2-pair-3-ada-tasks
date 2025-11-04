@@ -6,7 +6,7 @@ const SERVER_URL = `https://dev.adalab.es/api/todo`;
 
 let tasks = [];
 
-function renderTask(tasks) { console.log ('estoy entrando a render task y recibo' + tasks)
+function renderTask(tasks) { 
   for (const task of tasks) {
     if (task.completed === true) {
       listElement.innerHTML += `<li class="task completed">${task.name}</li>`;
