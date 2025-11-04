@@ -11,13 +11,13 @@ html {
 .header {
     background-color: #119b7d;
     text-align: center;
-    padding: 2rem;
+    padding: 3rem;
     color: #fff;
 }
 
 .main {
     min-height: 100dvh;
-    background-color: rgb(216, 214, 214);
+    background-color: #d8d6d6;
 }
 
 .article {
@@ -54,11 +54,13 @@ html {
 .section {
     background-color: white;
     padding: 3rem;
+    border-radius: 4px;
 }
 
 .formSearch {
     display: flex;
     gap: 1rem;
+
 }
 
 .listTask {
