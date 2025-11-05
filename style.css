@@ -18,6 +18,7 @@ html {
 .main {
     min-height: 100dvh;
     background-color: #d8d6d6;
+    padding-inline: 2rem;
 }
 
 .article {
