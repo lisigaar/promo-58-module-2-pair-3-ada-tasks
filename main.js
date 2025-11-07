@@ -5,6 +5,10 @@ const task = document.querySelectorAll(".task");
 const GITHUB_USER = "jenniferromanmuerte";
 const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
 const counter = document.querySelector(".js_counter");
+const inputAdd = document.querySelector ('.js_input-add');
+const butonAdd = document.querySelector ('.js_buton_add');
+const tasksLocalStorage = JSON.parse(localStorage.getItem("tasks"));
+
 
 let tasks = [];
 let counterChecked = 0;
@@ -88,10 +92,59 @@ ${counterNotChecked} por realizar
 `;
 };
 
-// Obtenemos los datos del servidor
-fetch(SERVER_URL)
+const handleNewTask = (event) => {
+  event.preventDefault();
+
+  // 1. Recoge el nombre de la tarea
+  const nameNewsTask = inputAdd.value;
+
+  // 2. Crea un objeto para la nueva tarea
+  const newTask = {
+    name: nameNewsTask, // sustituye este string vacío por el nombre de la tarea nueva
+    completed: false,
+  };
+
+  // 3. Añade la nueva tarea al array de tareas
+  fetch(SERVER_URL, {
+    method: "POST", // Especificamos el método POST
+    body: JSON.stringify(newTask), // Convertimos el objeto a JSON y lo incluimos en el cuerpo
+    headers: {
+      "Content-Type": "application/json", // Indicamos que enviamos datos en formato JSON
+    },
+  }).then((data) => {
+    console.log("Respuesta del servidor:", data);
+  });
+  // 4. Vuelve a pintar las tareas
+  fetch(SERVER_URL)
   .then((response) => response.json())
   .then((data) => {
     tasks = data.results;
     renderTask(tasks);
   });
+};
+
+ butonAdd.addEventListener ('click', handleNewTask);
+ 
+
+// Obtenemos los datos del servidor
+
+
+  if (tasksLocalStorage !== null) {
+    // si (existe el listado de tareas en Local Storage)
+   renderTask (tasksLocalStorage);
+    // pinta la lista de tareas almacenadas en tasksLocalStorage
+
+  } else {
+    //sino existe el listado de tareas en el local storage
+    // pide los datos al servidor
+    fetch(SERVER_URL)
+    .then((response) => response.json())
+    .then((data) => {
+      localStorage.setItem ('tasks', JSON.stringify (data.results));
+      tasks = data.results;
+      renderTask(tasks);
+    })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
