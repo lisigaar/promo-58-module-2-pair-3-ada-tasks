@@ -46,7 +46,7 @@ function renderTask(tasks) {
     }
   }
   // Llamamos a la función para pintra los contadores
-  renderCount(tasks, counterChecked, counterNotChecked);
+  renderCount(counterChecked, counterNotChecked);
   // Capturamos los check después de pintarlos
   const checkboxes = document.querySelectorAll(".inputCheck");
   // Llamamos a la función pasandole el array de los checkBox
@@ -89,9 +89,10 @@ const isChecked = (checkboxes) => {
 };
 
 // Función para pintar los contadores con los valores actualizados
-const renderCount = (tasks, counterChecked, counterNotChecked) => {
+const renderCount = (counterChecked, counterNotChecked) => {
+  const totalTasks = counterChecked + counterNotChecked;
   counter.innerHTML = `
-Tienes ${tasks.length} tareas,
+Tienes ${totalTasks} tareas,
 ${counterChecked} completadas y
 ${counterNotChecked} por realizar
 `;
